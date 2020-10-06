@@ -1,9 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import cors from "server/helpers/cors";
 import axios from "axios";
+import { decrypt } from "server/helpers/password";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
+
   if (req.method === "POST") {
     if (!req.body.emailAddress) {
       return res.send({ message: "Please Enter Email Address" });
@@ -33,17 +35,33 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     })
       .then(({ data }) => {
-        console.log(data);
-        if (data?.data?.account) {
-          return res.send({
-            data: data.data.account,
-          });
+        const account = data?.data?.account;
+        if (account) {
+          if (!account?.password) {
+            return res.send({ message: "Invalid Request" });
+          }
+
+          console.log(
+            decrypt(req.body.password, account.password),
+            req.body.password,
+            account.password
+          );
+
+          if (!decrypt(req.body.password, account.password)) {
+            return res.send({
+              message: "Invalid Password",
+            });
+          } else {
+            return res.send({
+              data: data.data.account,
+            });
+          }
         }
 
         return res.send({ message: "Account doesn't exist" });
       })
-      .catch((ex) => {
-        console.log(ex);
+      .catch(() => {
+        return res.send({ message: "Something went wrong" });
       });
   }
 };
