@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const LoginForm = () => (
   <>
     <h3>Login</h3>
@@ -38,7 +40,9 @@ const LoginForm = () => (
     <p>
       <a href="#">Forgot Password?</a>
     </p>
-    <button className="btn btn-primary">Login Now</button>
+    <Link href="/newsfeed">
+      <button className="btn btn-primary">Login Now</button>
+    </Link>
   </>
 );
 

@@ -31,12 +31,12 @@ export default function Home() {
               <div className="reg-form-container">
                 <div className="reg-options">
                   <ul className="nav nav-tabs">
-                    <li className="active">
+                    <li>
                       <a href="#register" data-toggle="tab">
                         Register
                       </a>
                     </li>
-                    <li>
+                    <li className="active">
                       <a href="#login" data-toggle="tab">
                         Login
                       </a>
@@ -45,11 +45,11 @@ export default function Home() {
                 </div>
 
                 <div className="tab-content">
-                  <div className="tab-pane active" id="register">
+                  <div className="tab-pane " id="register">
                     <RegisterForm />
                   </div>
 
-                  <div className="tab-pane" id="login">
+                  <div className="tab-pane active" id="login">
                     <LoginForm />
                   </div>
                 </div>

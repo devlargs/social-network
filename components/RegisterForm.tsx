@@ -1,4 +1,5 @@
 import CountriesSelect from "components/CountriesSelect";
+import Link from "next/link";
 
 const RegisterForm = () => (
   <>
@@ -184,7 +185,9 @@ const RegisterForm = () => (
     <p>
       <a href="#">Already have an account?</a>
     </p>
-    <button className="btn btn-primary">Register Now</button>
+    <Link href="/newsfeed">
+      <button className="btn btn-primary">Register Now</button>
+    </Link>
   </>
 );
 

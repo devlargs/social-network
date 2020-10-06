@@ -1,4 +1,5 @@
 import links from "constants/links";
+import Link from "next/link";
 
 const Header = () => (
   <header id="header">
@@ -27,7 +28,7 @@ const Header = () => (
           id="bs-example-navbar-collapse-1"
         >
           <ul className="nav navbar-nav navbar-right main-menu">
-            <li className="dropdown">
+            {/* <li className="dropdown">
               <a
                 href="#"
                 className="dropdown-toggle"
@@ -194,11 +195,14 @@ const Header = () => (
                 </li>
               </ul>
             </li>
+             */}
             <li className="dropdown">
-              <a href="contact.html">Contact</a>
+              <Link href="/">
+                <a href="contact.html">Logout</a>
+              </Link>
             </li>
           </ul>
-          <form className="navbar-form navbar-right hidden-sm">
+          {/* <form className="navbar-form navbar-right hidden-sm">
             <div className="form-group">
               <i className="icon ion-android-search"></i>
               <input
@@ -207,7 +211,7 @@ const Header = () => (
                 placeholder="Search friends, photos, videos"
               />
             </div>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>
