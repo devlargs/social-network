@@ -1,32 +1,33 @@
-import axios from "axios";
+import CreatePostForm from "components/CreatePostForm";
+import NewsFeedNav from "components/NewsFeedNav";
+import PostContent from "components/PostContent";
+import ProfileCard from "components/ProfileCard";
+import WhoToFollow from "components/WhoToFollow";
 
 const NewsFeed = () => {
-  //   axios({
-  //     url: process.env.GRAPHCMS_ENDPOINT,
-  //     method: "POST",
-  //     headers: {
-  //       "Content-type": "application/json",
-  //       Authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
-  //     },
-  //     data: {
-  //       query: `
-  //         {
-  //             accounts {
-  //                 firstName
-  //                 lastName
-  //             }
-  //         }
-  //     `,
-  //     },
-  //   })
-  //     .then((result) => {
-  //       console.log(result);
-  //     })
-  //     .catch((ex) => {
-  //       console.log(ex);
-  //     });
+  return (
+    <>
+      <div id="page-contents">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3 static">
+              <ProfileCard />
+              <NewsFeedNav />
+            </div>
 
-  return <>News Feed</>;
+            <div className="col-md-7">
+              <CreatePostForm />
+              <PostContent />
+            </div>
+
+            <div className="col-md-2 static">
+              <WhoToFollow />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default NewsFeed;

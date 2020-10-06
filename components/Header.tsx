@@ -1,7 +1,7 @@
 import links from "constants/links";
 
 const Header = () => (
-  <header id="header-inverse">
+  <header id="header">
     <nav className="navbar navbar-default navbar-fixed-top menu">
       <div className="container">
         <div className="navbar-header">
@@ -18,7 +18,7 @@ const Header = () => (
             <span className="icon-bar"></span>
           </button>
           <a className="navbar-brand" href="index-register.html">
-            <img src={links.LOGO} alt="logo" />
+            <img src="images/logo.png" alt="logo" />
           </a>
         </div>
 
