@@ -15,7 +15,7 @@ export default function Home() {
           <div className="row">
             <div className="col-sm-5">
               <div className="intro-texts">
-                <h1 className="text-white">Add headline here!</h1>
+                <h1 className="text-white">Add headline here !!!!</h1>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's

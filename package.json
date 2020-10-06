@@ -8,7 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "babel-plugin-styled-components": "^1.11.1",
+    "cors": "^2.8.5",
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1"
