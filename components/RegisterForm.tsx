@@ -182,9 +182,9 @@ const RegisterForm = () => (
         </div>
       </div>
     </form>
-    <p>
+    {/* <p>
       <a href="#">Already have an account?</a>
-    </p>
+    </p> */}
     <Link href="/newsfeed">
       <button className="btn btn-primary">Register Now</button>
     </Link>

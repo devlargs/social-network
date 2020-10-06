@@ -5,7 +5,15 @@ import axios from "axios";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
   if (req.method === "POST") {
-    axios({
+    if (!req.body.emailAddress) {
+      return res.send({ message: "Please Enter Email Address" });
+    }
+
+    if (!req.body.password) {
+      return res.send({ message: "Please Enter Password" });
+    }
+
+    await axios({
       url: process.env.GRAPHCMS_ENDPOINT,
       method: "POST",
       headers: {
@@ -15,19 +23,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       data: {
         query: `
             {
-                accounts {
+                account(where: {emailAddress: "${req.body.emailAddress}"}) {
                     firstName
                     lastName
+                    password
                 }
             }
         `,
       },
     })
-      .then((result) => {
-        console.log(result);
-        res.send({
-          result: result.data,
-        });
+      .then(({ data }) => {
+        console.log(data);
+        if (data?.data?.account) {
+          return res.send({
+            data: data.data.account,
+          });
+        }
+
+        return res.send({ message: "Account doesn't exist" });
       })
       .catch((ex) => {
         console.log(ex);
