@@ -1,3 +1,5 @@
+import links from "constants/links";
+
 const Header = () => (
   <header id="header-inverse">
     <nav className="navbar navbar-default navbar-fixed-top menu">
@@ -16,10 +18,7 @@ const Header = () => (
             <span className="icon-bar"></span>
           </button>
           <a className="navbar-brand" href="index-register.html">
-            <img
-              src="https://themified.com/friend-finder/images/logo.png"
-              alt="logo"
-            />
+            <img src={links.LOGO} alt="logo" />
           </a>
         </div>
 
