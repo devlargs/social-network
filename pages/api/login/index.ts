@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import cors from "server/helpers/cors";
 import axios from "axios";
 import { decrypt } from "server/helpers/password";
+import { account } from "server/queries/account";
+import { sign } from "server/helpers/token";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await cors(req, res);
@@ -23,15 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         Authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
       },
       data: {
-        query: `
-            {
-                account(where: {emailAddress: "${req.body.emailAddress}"}) {
-                    firstName
-                    lastName
-                    password
-                }
-            }
-        `,
+        query: account(req.body.emailAddress),
       },
     })
       .then(({ data }) => {
@@ -41,27 +35,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             return res.send({ message: "Invalid Request" });
           }
 
-          console.log(
-            decrypt(req.body.password, account.password),
-            req.body.password,
-            account.password
-          );
-
           if (!decrypt(req.body.password, account.password)) {
             return res.send({
               message: "Invalid Password",
             });
           } else {
             return res.send({
-              data: data.data.account,
+              data: account,
+              token: sign({ id: account.id }),
             });
           }
         }
 
         return res.send({ message: "Account doesn't exist" });
       })
-      .catch(() => {
-        return res.send({ message: "Something went wrong" });
+      .catch((ex) => {
+        return res.send({ message: "Something went wrong", error: ex });
       });
   }
 };

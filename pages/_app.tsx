@@ -3,7 +3,7 @@ import Head from "next/head";
 import Header from "components/Header";
 import Footer from "components/Footer";
 
-function MyApp({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   const showable = (): Boolean => {
     const show = ["/newsfeed"];
     if (process.browser) {
@@ -40,6 +40,6 @@ function MyApp({ Component, pageProps }) {
       {showable() && <Footer />}
     </>
   );
-}
+};
 
-export default MyApp;
+export default App;
