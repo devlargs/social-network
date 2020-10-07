@@ -26,19 +26,25 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const account = data?.data?.account;
             console.log(account);
             res.send({
-              data: verify(req.body.token),
+              verified: true,
             });
           })
           .catch((ex) => {
-            return res.send({ message: "Something went wrong", error: ex });
+            return res.send({
+              message: "Something went wrong",
+              error: ex,
+              verified: false,
+            });
           });
       } else {
         res.send({
           error: "Invalid token",
+          verified: false,
         });
       }
     } catch (ex) {
       res.send({
+        verified: false,
         error: `${ex}`,
       });
     }
