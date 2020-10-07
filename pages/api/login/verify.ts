@@ -9,12 +9,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   initBodyParser();
   await cors(req, res);
 
-  console.log("fuckou");
-
   if (req.method === "POST") {
     try {
       const json = verify(req.body.token) as any;
-      console.log(req.body.token, "Tangina ka");
       if (json?.data?.id) {
         await axios({
           url: process.env.GRAPHCMS_ENDPOINT,
@@ -27,9 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             query: account(`{ id: "${json.data.id}" }`),
           },
         })
-          .then(({ data }) => {
-            const account = data?.data?.account;
-            console.log(account);
+          .then(() => {
             res.send({
               verified: true,
             });

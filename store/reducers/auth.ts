@@ -5,12 +5,9 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDIxNjY5MDEsImRhdGEiOnsiaWQiOiJja2Z4cmh5YW8wcHB6MDE4NWd2Nmd2eHJsIn0sImlhdCI6MTYwMjEwNjkwMX0.5KPHHVsvLM6RoEH52HPyvgD2wk9IY5bA_23hKxKm32w";
-
 export const verifyAuth = createAsyncThunk(
   "auth/verifyAuth",
-  async (_, thunkAPI) => {
+  async (token: string, thunkAPI) => {
     try {
       const { data } = await axios.post("/api/login/verify", {
         token,

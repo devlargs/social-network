@@ -1,12 +1,9 @@
 import "styles/globals.css";
 import Head from "next/head";
-import Header from "components/Header";
-import Footer from "components/Footer";
 import client from "utils/apolloClient";
 import { ApolloProvider } from "@apollo/client";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "store";
-import showable from "utils/isShowable";
 import AppWrapper from "components/AppWrapper";
 
 const App = ({ Component, pageProps }) => {
@@ -33,11 +30,9 @@ const App = ({ Component, pageProps }) => {
 
       <ReduxProvider store={store}>
         <ApolloProvider client={client}>
-          {showable() && <Header />}
           <AppWrapper>
             <Component {...pageProps} />
           </AppWrapper>
-          {showable() && <Footer />}
         </ApolloProvider>
       </ReduxProvider>
     </>

@@ -1,22 +1,52 @@
 import { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuth, verifyAuth } from "store/reducers/auth";
+import showable from "utils/isShowable";
+import Header from "components/Header";
+import Footer from "components/Footer";
+import Router from "next/router";
+import storage from "constants/storage";
 
 type Props = {
   children: ReactNode;
+  pageProps?: any;
 };
 
-const AppWrapper = ({ children }: Props) => {
+const AppWrapper = ({ children, pageProps }: Props) => {
   const dispatch = useDispatch();
-  const { loading, error, verified } = useSelector(selectAuth);
-
-  console.log(loading, verified);
+  const { loading, verified } = useSelector(selectAuth);
 
   useEffect(() => {
-    dispatch(verifyAuth());
+    if (localStorage.getItem(storage.TOKEN)) {
+      dispatch(verifyAuth(storage.TOKEN));
+    } else {
+      Router.push("/");
+    }
   }, []);
 
-  return <>{children}</>;
+  useEffect(() => {
+    if (!loading && !verified) {
+      if (process.browser) {
+        Router.push("/");
+      }
+    }
+  }, [loading, verified, process.browser && window.location.pathname]);
+
+  return (
+    <>
+      {loading ? (
+        <div id="spinner-wrapper">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <>
+          {showable() && <Header />}
+          {children}
+          {showable() && <Footer />}
+        </>
+      )}
+    </>
+  );
 };
 
 export default AppWrapper;
