@@ -4,20 +4,14 @@ import Header from "components/Header";
 import Footer from "components/Footer";
 import client from "utils/apolloClient";
 import { ApolloProvider } from "@apollo/client";
+import { Provider as ReduxProvider } from "react-redux";
+import store from "store";
+import showable from "utils/isShowable";
+import AppWrapper from "components/AppWrapper";
 
 const App = ({ Component, pageProps }) => {
-  const showable = (): Boolean => {
-    const show = ["/newsfeed"];
-    if (process.browser) {
-      const pathname = location.pathname;
-      return show.includes(pathname);
-    }
-
-    return false;
-  };
-
   return (
-    <ApolloProvider client={client}>
+    <>
       <Head>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -37,10 +31,16 @@ const App = ({ Component, pageProps }) => {
         <script src="js/script.js"></script>
       </Head>
 
-      {showable() && <Header />}
-      <Component {...pageProps} />
-      {showable() && <Footer />}
-    </ApolloProvider>
+      <ReduxProvider store={store}>
+        <ApolloProvider client={client}>
+          {showable() && <Header />}
+          <AppWrapper>
+            <Component {...pageProps} />
+          </AppWrapper>
+          {showable() && <Footer />}
+        </ApolloProvider>
+      </ReduxProvider>
+    </>
   );
 };
 

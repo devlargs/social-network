@@ -3,13 +3,18 @@ import cors from "server/helpers/cors";
 import axios from "axios";
 import { verify } from "server/helpers/token";
 import { account } from "server/queries/account";
+import initBodyParser from "server/helpers/initBodyParser";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  initBodyParser();
   await cors(req, res);
+
+  console.log("fuckou");
 
   if (req.method === "POST") {
     try {
       const json = verify(req.body.token) as any;
+      console.log(req.body.token, "Tangina ka");
       if (json?.data?.id) {
         await axios({
           url: process.env.GRAPHCMS_ENDPOINT,

@@ -4,8 +4,10 @@ import axios from "axios";
 import { decrypt } from "server/helpers/password";
 import { account } from "server/queries/account";
 import { sign } from "server/helpers/token";
+import initBodyParser from "server/helpers/initBodyParser";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  initBodyParser();
   await cors(req, res);
 
   if (req.method === "POST") {

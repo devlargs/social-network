@@ -9,18 +9,23 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.2",
+    "@reduxjs/toolkit": "^1.4.0",
     "@types/bcrypt": "^3.0.0",
+    "@types/body-parser": "^1.19.0",
     "@types/jsonwebtoken": "^8.5.0",
+    "@types/react-redux": "^7.1.9",
     "axios": "^0.20.0",
     "babel-plugin-styled-components": "^1.11.1",
     "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "graphql": "^15.3.0",
     "graphql-request": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
     "next": "9.5.3",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-redux": "^7.2.1"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
