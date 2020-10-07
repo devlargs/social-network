@@ -25,24 +25,24 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         Authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
       },
       data: {
-        query: account(req.body.emailAddress),
+        query: account(`{ emailAddress: "${req.body.emailAddress}" }`),
       },
     })
       .then(({ data }) => {
-        const account = data?.data?.account;
-        if (account) {
-          if (!account?.password) {
+        const response = data?.data?.account;
+        if (response) {
+          if (!response?.password) {
             return res.send({ message: "Invalid Request" });
           }
 
-          if (!decrypt(req.body.password, account.password)) {
+          if (!decrypt(req.body.password, response.password)) {
             return res.send({
               message: "Invalid Password",
             });
           } else {
             return res.send({
-              data: account,
-              token: sign({ id: account.id }),
+              data: response,
+              token: sign({ id: response.id }),
             });
           }
         }

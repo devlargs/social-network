@@ -1,6 +1,6 @@
-export const account = (email: string): string => `
+export const account = (where: string): string => `
 {
-    account(where: {emailAddress: "${email}"}) {
+    account(where: ${where}) {
         id
         firstName
         lastName
