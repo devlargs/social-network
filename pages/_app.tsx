@@ -2,6 +2,8 @@ import "styles/globals.css";
 import Head from "next/head";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import client from "utils/apolloClient";
+import { ApolloProvider } from "@apollo/client";
 
 const App = ({ Component, pageProps }) => {
   const showable = (): Boolean => {
@@ -15,7 +17,7 @@ const App = ({ Component, pageProps }) => {
   };
 
   return (
-    <>
+    <ApolloProvider client={client}>
       <Head>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/style.css" />
@@ -38,7 +40,7 @@ const App = ({ Component, pageProps }) => {
       {showable() && <Header />}
       <Component {...pageProps} />
       {showable() && <Footer />}
-    </>
+    </ApolloProvider>
   );
 };
 
