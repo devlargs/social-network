@@ -26,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "next": "9.5.3",
     "react": "16.13.1",
+    "react-content-loader": "^5.1.2",
     "react-dom": "16.13.1",
     "react-hook-form": "^6.9.2",
     "react-redux": "^7.2.1",
