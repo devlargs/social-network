@@ -7,7 +7,7 @@ type Props = {
   foregroundColor?: string;
 };
 
-export default ({
+const Loader = ({
   width = 200,
   height = 70,
   backgroundColor = "#f7f2f2",
@@ -29,3 +29,5 @@ export default ({
     <circle cx="20" cy="20" r="20" />
   </ContentLoader>
 );
+
+export default Loader;

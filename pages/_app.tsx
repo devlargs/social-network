@@ -6,6 +6,10 @@ import { Provider as ReduxProvider } from "react-redux";
 import store from "store";
 import AppWrapper from "components/AppWrapper";
 import ScriptLinks from "components/ScriptLinks";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 const App = ({ Component, pageProps }) => {
   return (
