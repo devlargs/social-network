@@ -15,7 +15,7 @@ const PostContent = () => (
         <div className="post-detail">
           <div className="user-info">
             <h5>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Alexis Clark
               </a>{" "}
               <span className="following">following</span>
@@ -53,7 +53,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Diana{" "}
               </a>
               <i className="em em-laughing"></i> Lorem ipsum dolor sit amet,
@@ -69,7 +69,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 John
               </a>{" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -112,7 +112,7 @@ const PostContent = () => (
         <div className="post-detail">
           <div className="user-info">
             <h5>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Sophia Lee
               </a>{" "}
               <span className="following">following</span>
@@ -146,7 +146,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Olivia{" "}
               </a>{" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -162,7 +162,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Sarah
               </a>{" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -177,7 +177,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Linda
               </a>{" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -212,7 +212,7 @@ const PostContent = () => (
         <div className="post-detail">
           <div className="user-info">
             <h5>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Linda Lohan
               </a>{" "}
               <span className="following">following</span>
@@ -255,7 +255,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Cris{" "}
               </a>{" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -294,7 +294,7 @@ const PostContent = () => (
         <div className="post-detail">
           <div className="user-info">
             <h5>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 John Doe
               </a>{" "}
               <span className="following">following</span>
@@ -328,7 +328,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Brian{" "}
               </a>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -344,7 +344,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Richard
               </a>{" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -380,7 +380,7 @@ const PostContent = () => (
         <div className="post-detail">
           <div className="user-info">
             <h5>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Sophia Lee
               </a>{" "}
               <span className="following">following</span>
@@ -417,7 +417,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Sarah{" "}
               </a>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -458,7 +458,7 @@ const PostContent = () => (
         <div className="post-detail">
           <div className="user-info">
             <h5>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Anna Young
               </a>{" "}
               <span className="following">following</span>
@@ -491,7 +491,7 @@ const PostContent = () => (
               className="profile-photo-sm"
             />
             <p>
-              <a href="timeline.html" className="profile-link">
+              <a href="#" className="profile-link">
                 Julia{" "}
               </a>
               At vero eos et accusamus et iusto odio dignissimos ducimus qui

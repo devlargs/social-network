@@ -15,11 +15,6 @@ const AppWrapper = ({ children }: Props) => {
   const dispatch = useDispatch();
   const { loading, verified } = useSelector(selectAuth);
 
-  console.log({
-    loading,
-    verified,
-  });
-
   useEffect(() => {
     if (localStorage.getItem(storage.TOKEN)) {
       dispatch(verifyAuth(storage.TOKEN));
@@ -29,7 +24,7 @@ const AppWrapper = ({ children }: Props) => {
   }, []);
 
   useEffect(() => {
-    if (!loading && !verified) {
+    if (!localStorage.getItem(storage.TOKEN) && !loading && !verified) {
       if (process.browser) {
         Router.push("/");
       }

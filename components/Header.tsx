@@ -18,7 +18,7 @@ const Header = () => (
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="index-register.html">
+          <a className="navbar-brand" href="#">
             <img src="images/logo.png" alt="logo" />
           </a>
         </div>
@@ -44,10 +44,10 @@ const Header = () => (
               </a>
               <ul className="dropdown-menu newsfeed-home">
                 <li>
-                  <a href="index.html">Landing Page 1</a>
+                  <a href="#">Landing Page 1</a>
                 </li>
                 <li>
-                  <a href="index-register.html">Landing Page 2</a>
+                  <a href="#">Landing Page 2</a>
                 </li>
               </ul>
             </li>
@@ -67,22 +67,22 @@ const Header = () => (
               </a>
               <ul className="dropdown-menu newsfeed-home">
                 <li>
-                  <a href="newsfeed.html">Newsfeed</a>
+                  <a href="#">Newsfeed</a>
                 </li>
                 <li>
-                  <a href="newsfeed-people-nearby.html">Poeple Nearly</a>
+                  <a href="#">Poeple Nearly</a>
                 </li>
                 <li>
-                  <a href="newsfeed-friends.html">My friends</a>
+                  <a href="#">My friends</a>
                 </li>
                 <li>
-                  <a href="newsfeed-messages.html">Chatroom</a>
+                  <a href="#">Chatroom</a>
                 </li>
                 <li>
-                  <a href="newsfeed-images.html">Images</a>
+                  <a href="#">Images</a>
                 </li>
                 <li>
-                  <a href="newsfeed-videos.html">Videos</a>
+                  <a href="#">Videos</a>
                 </li>
               </ul>
             </li>
@@ -102,31 +102,31 @@ const Header = () => (
               </a>
               <ul className="dropdown-menu login">
                 <li>
-                  <a href="timeline.html">Timeline</a>
+                  <a href="#">Timeline</a>
                 </li>
                 <li>
-                  <a href="timeline-about.html">Timeline About</a>
+                  <a href="timeline-about">Timeline About</a>
                 </li>
                 <li>
-                  <a href="timeline-album.html">Timeline Album</a>
+                  <a href="timeline-album">Timeline Album</a>
                 </li>
                 <li>
-                  <a href="timeline-friends.html">Timeline Friends</a>
+                  <a href="timeline-friends">Timeline Friends</a>
                 </li>
                 <li>
-                  <a href="edit-profile-basic.html">Edit: Basic Info</a>
+                  <a href="edit-profile-basic">Edit: Basic Info</a>
                 </li>
                 <li>
-                  <a href="edit-profile-work-edu.html">Edit: Work</a>
+                  <a href="edit-profile-work-edu">Edit: Work</a>
                 </li>
                 <li>
-                  <a href="edit-profile-interests.html">Edit: Interests</a>
+                  <a href="edit-profile-interests">Edit: Interests</a>
                 </li>
                 <li>
-                  <a href="edit-profile-settings.html">Account Settings</a>
+                  <a href="edit-profile-settings">Account Settings</a>
                 </li>
                 <li>
-                  <a href="edit-profile-password.html">Change Password</a>
+                  <a href="edit-profile-password">Change Password</a>
                 </li>
               </ul>
             </li>
@@ -146,59 +146,59 @@ const Header = () => (
               </a>
               <ul className="dropdown-menu page-list">
                 <li>
-                  <a href="index.html">Landing Page 1</a>
+                  <a href="#">Landing Page 1</a>
                 </li>
                 <li>
-                  <a href="index-register.html">Landing Page 2</a>
+                  <a href="#">Landing Page 2</a>
                 </li>
                 <li>
-                  <a href="newsfeed.html">Newsfeed</a>
+                  <a href="#">Newsfeed</a>
                 </li>
                 <li>
-                  <a href="newsfeed-people-nearby.html">Poeple Nearly</a>
+                  <a href="#">Poeple Nearly</a>
                 </li>
                 <li>
-                  <a href="newsfeed-friends.html">My friends</a>
+                  <a href="#">My friends</a>
                 </li>
                 <li>
-                  <a href="newsfeed-messages.html">Chatroom</a>
+                  <a href="#">Chatroom</a>
                 </li>
                 <li>
-                  <a href="newsfeed-images.html">Images</a>
+                  <a href="#">Images</a>
                 </li>
                 <li>
-                  <a href="newsfeed-videos.html">Videos</a>
+                  <a href="#">Videos</a>
                 </li>
                 <li>
-                  <a href="timeline.html">Timeline</a>
+                  <a href="#">Timeline</a>
                 </li>
                 <li>
-                  <a href="timeline-about.html">Timeline About</a>
+                  <a href="timeline-about">Timeline About</a>
                 </li>
                 <li>
-                  <a href="timeline-album.html">Timeline Album</a>
+                  <a href="timeline-album">Timeline Album</a>
                 </li>
                 <li>
-                  <a href="timeline-friends.html">Timeline Friends</a>
+                  <a href="timeline-friends">Timeline Friends</a>
                 </li>
                 <li>
-                  <a href="edit-profile-basic.html">Edit Profile</a>
+                  <a href="edit-profile-basic">Edit Profile</a>
                 </li>
                 <li>
-                  <a href="contact.html">Contact Us</a>
+                  <a href="contact">Contact Us</a>
                 </li>
                 <li>
-                  <a href="faq.html">FAQ Page</a>
+                  <a href="faq">FAQ Page</a>
                 </li>
                 <li>
-                  <a href="404.html">404 Not Found</a>
+                  <a href="404">404 Not Found</a>
                 </li>
               </ul>
             </li>
              */}
             <li className="dropdown">
               <Link href="/">
-                <a href="contact.html">Logout</a>
+                <a href="contact">Logout</a>
               </Link>
             </li>
           </ul>

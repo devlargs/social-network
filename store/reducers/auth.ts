@@ -7,6 +7,7 @@ import axios from "axios";
 import storage from "constants/storage";
 import { DynamicObject } from "interfaces/DynamicObject";
 import Router from "next/router";
+import toastr from "toastr";
 
 export const verifyAuth = createAsyncThunk(
   "auth/verifyAuth",
@@ -15,7 +16,6 @@ export const verifyAuth = createAsyncThunk(
       const { data } = await axios.post("/api/login/verify", {
         token,
       });
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -74,12 +74,12 @@ const authSlice = createSlice({
       state.user.data = action.payload.data;
       state.user.loading = false;
       state.verified = true;
-      alert("Successfully authenticated");
+      toastr.success("Successfully authenticated");
       localStorage.setItem(storage.TOKEN, action.payload.token);
       Router.push("/newsfeed");
     },
     [loginUser.rejected as any]: (state: any, action) => {
-      alert(action.payload.message);
+      toastr.error(action.payload.message);
       state.user.error = action.payload.error;
       state.user.loading = false;
     },

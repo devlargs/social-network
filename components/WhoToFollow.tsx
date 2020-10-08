@@ -11,7 +11,7 @@ const FollowCard = ({ name }: FollowCardProps) => (
     />
     <div>
       <h5>
-        <a href="timeline.html">{name}</a>
+        <a href="timeline">{name}</a>
       </h5>
       <a href="#" className="text-green">
         Add friend

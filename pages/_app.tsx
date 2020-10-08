@@ -1,4 +1,5 @@
 import "styles/globals.css";
+import "toastr/build/toastr.min.css";
 import Head from "next/head";
 import client from "utils/apolloClient";
 import { ApolloProvider } from "@apollo/client";

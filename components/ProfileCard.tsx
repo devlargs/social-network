@@ -8,7 +8,7 @@ const ProfileCard = () => (
       className="profile-photo"
     />
     <h5>
-      <a href="timeline.html" className="text-white">
+      <a href="timeline" className="text-white">
         Nayeon
       </a>
     </h5>

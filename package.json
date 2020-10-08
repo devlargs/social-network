@@ -29,7 +29,8 @@
     "react-hook-form": "^6.9.2",
     "react-redux": "^7.2.1",
     "react-toast-notifications": "^2.4.0",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
