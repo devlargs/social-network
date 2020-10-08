@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.2",
+    "@apollo/react-hooks": "^4.0.0",
     "@reduxjs/toolkit": "^1.4.0",
     "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.19.0",

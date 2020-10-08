@@ -1,21 +1,35 @@
-const ProfileCard = () => (
-  <div className="profile-card">
-    <img
-      src="https://pbs.twimg.com/profile_images/1268934390047899648/oQrBubFv_400x400.jpg"
-      width={300}
-      height={300}
-      alt="user"
-      className="profile-photo"
-    />
-    <h5>
-      <a href="timeline" className="text-white">
-        Nayeon
+import { useQuery } from "@apollo/react-hooks";
+import { ACCOUNT } from "queries/accounts";
+import coercedGet from "utils/coercedGet";
+
+const ProfileCard = () => {
+  const { data, loading, error } = useQuery(ACCOUNT, {
+    variables: {
+      id: "ckfxrhyao0ppz0185gv6gvxrl",
+    },
+  });
+
+  const account = coercedGet(data, "account", {});
+
+  return (
+    <div className="profile-card">
+      <img
+        src={account?.avatar?.url}
+        width={300}
+        height={300}
+        alt="user"
+        className="profile-photo"
+      />
+      <h5>
+        <a href="timeline" className="text-white">
+          {account?.firstName} {account?.lastName}
+        </a>
+      </h5>
+      <a href="#" className="text-white">
+        <i className="ion ion-android-person-add"></i> 0 followers
       </a>
-    </h5>
-    <a href="#" className="text-white">
-      <i className="ion ion-android-person-add"></i> 1,299 followers
-    </a>
-  </div>
-);
+    </div>
+  );
+};
 
 export default ProfileCard;
