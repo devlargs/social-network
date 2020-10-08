@@ -4,6 +4,9 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import axios from "axios";
+import storage from "constants/storage";
+import { DynamicObject } from "interfaces/DynamicObject";
+import Router from "next/router";
 
 export const verifyAuth = createAsyncThunk(
   "auth/verifyAuth",
@@ -20,12 +23,36 @@ export const verifyAuth = createAsyncThunk(
   }
 );
 
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async (params: DynamicObject, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/api/login", {
+        ...params,
+      });
+
+      if (data?.data) {
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     loading: false,
     verified: false,
     error: null,
+    user: {
+      loading: false,
+      data: {},
+      error: null,
+    },
   },
   reducers: {},
   extraReducers: {
@@ -40,6 +67,22 @@ const authSlice = createSlice({
       state.error = action.payload.error;
       state.loading = false;
     },
+    [loginUser.pending as any]: (state) => {
+      state.user.loading = true;
+    },
+    [loginUser.fulfilled as any]: (state: any, action) => {
+      state.user.data = action.payload.data;
+      state.user.loading = false;
+      state.verified = true;
+      alert("Successfully authenticated");
+      localStorage.setItem(storage.TOKEN, action.payload.token);
+      Router.push("/newsfeed");
+    },
+    [loginUser.rejected as any]: (state: any, action) => {
+      alert(action.payload.message);
+      state.user.error = action.payload.error;
+      state.user.loading = false;
+    },
   },
 });
 
@@ -48,6 +91,15 @@ export const selectAuth = createSelector(
     verified: state.auth.verified,
     loading: state.auth.loading,
     error: state.auth.error,
+  }),
+  (state) => state
+);
+
+export const selectUser = createSelector(
+  (state: any) => ({
+    data: state.auth.user.verified,
+    loading: state.auth.user.loading,
+    error: state.auth.user.error,
   }),
   (state) => state
 );

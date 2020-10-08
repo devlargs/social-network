@@ -9,12 +9,16 @@ import storage from "constants/storage";
 
 type Props = {
   children: ReactNode;
-  pageProps?: any;
 };
 
-const AppWrapper = ({ children, pageProps }: Props) => {
+const AppWrapper = ({ children }: Props) => {
   const dispatch = useDispatch();
   const { loading, verified } = useSelector(selectAuth);
+
+  console.log({
+    loading,
+    verified,
+  });
 
   useEffect(() => {
     if (localStorage.getItem(storage.TOKEN)) {
