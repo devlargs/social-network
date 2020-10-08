@@ -56,11 +56,15 @@ const LoginForm = () => {
         <p>
           <a href="#">Forgot Password?</a>
         </p>
-        {/* <Link href="/newsfeed"> */}
-        <button className="btn btn-primary" type="submit">
-          Login Now
+        <button className="btn btn-primary" type="submit" disabled={loading}>
+          {loading ? (
+            <>
+              Logging in <span className="fa fa-gear fa-spin"></span>
+            </>
+          ) : (
+            "Login Now"
+          )}
         </button>
-        {/* </Link> */}
       </form>
     </>
   );
