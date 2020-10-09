@@ -30,7 +30,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             });
           })
           .catch((ex) => {
-            console.log(ex, "33");
             return res.send({
               message: "Something went wrong",
               error: ex,

@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { COMMENTS_BY_POST_ID } from "queries/comments";
 import coercedGet from "utils/coercedGet";
+import DangerousHTML from "components/styles/DangerousHTML";
 
 type Props = {
   id: string;
@@ -16,8 +17,6 @@ const PostComments = ({ id }: Props): ReactElement => {
 
   const posts = coercedGet(data, "posts", [{ comments: [] }])[0];
 
-  console.log(data, loading);
-
   return (
     <>
       {posts.comments.map((q: any, i: number) => (
@@ -31,7 +30,8 @@ const PostComments = ({ id }: Props): ReactElement => {
             <a href="#" className="profile-link">
               {q?.creator?.firstName} {q?.creator?.lastName}
             </a>{" "}
-            {q?.content}
+            <DangerousHTML html={q?.content?.html} />
+            {/* {q?.content} */}
           </p>
         </div>
       ))}

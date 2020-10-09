@@ -52,7 +52,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return res.send({ message: "Account doesn't exist" });
       })
       .catch((ex) => {
-        console.log(ex, "55");
         return res.send({ message: "Something went wrong", error: ex });
       });
   }

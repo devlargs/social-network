@@ -2,14 +2,12 @@ import { useQuery } from "@apollo/react-hooks";
 import { POSTS } from "queries/posts";
 import coercedGet from "utils/coercedGet";
 import dayjs from "dayjs";
-import styled from "styled-components";
+import DangerousHTML from "components/styles/DangerousHTML";
 import PostComments from "components/PostComments";
 
 const PostContent = () => {
   const { data, loading } = useQuery(POSTS);
   const posts = coercedGet(data, "posts", []);
-
-  console.log(posts, loading);
 
   return (
     <>
@@ -215,8 +213,8 @@ const PostContent = () => {
         </div>
       </div> */}
 
-      {posts.map((q: any) => (
-        <>
+      {posts.map((q: any, i: number) => (
+        <div key={i}>
           <div className="post-content">
             <div className="post-container">
               <img
@@ -241,20 +239,16 @@ const PostContent = () => {
                   <a className="btn text-green">
                     <i className="icon ion-thumbsup"></i> 0
                   </a>
-                  <a className="btn text-red">
+                  {/* <a className="btn text-red">
                     <i className="fa fa-thumbs-down"></i> 0
-                  </a>
+                  </a> */}
                 </div>
                 <div className="line-divider"></div>
                 <div className="post-text">
                   <p>
                     <i className="em em-thumbsup"></i>{" "}
                     <i className="em em-thumbsup"></i>
-                    <DangerousHTML
-                      dangerouslySetInnerHTML={{
-                        __html: q?.content?.html,
-                      }}
-                    />
+                    <DangerousHTML html={q?.content?.html} />
                   </p>
                 </div>
                 <div className="line-divider" />
@@ -262,7 +256,7 @@ const PostContent = () => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       ))}
 
       {/* <div className="post-content">
@@ -506,13 +500,5 @@ const PostContent = () => {
     </>
   );
 };
-
-const DangerousHTML = styled.div`
-  img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-  }
-`;
 
 export default PostContent;

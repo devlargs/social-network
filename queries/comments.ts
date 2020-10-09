@@ -6,7 +6,9 @@ export const COMMENTS_BY_POST_ID = gql`
       id
       comments {
         id
-        content
+        content {
+          html
+        }
         creator {
           id
           firstName
