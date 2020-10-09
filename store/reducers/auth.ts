@@ -7,7 +7,41 @@ import axios from "axios";
 import storage from "constants/storage";
 import { DynamicObject } from "interfaces/DynamicObject";
 import Router from "next/router";
+import client from "utils/apolloClient";
 import toastr from "toastr";
+import { CREATE_ACCOUNT, PUBLISH_ACCOUNT } from "mutations/account";
+
+export const createUser = createAsyncThunk(
+  "auth/createUser",
+  async (params: DynamicObject, thunkAPI) => {
+    try {
+      const {
+        data: {
+          createAccount: { id },
+        },
+      } = await client.mutate({
+        mutation: CREATE_ACCOUNT,
+        variables: {
+          data: params,
+        },
+      });
+
+      await client.mutate({
+        mutation: PUBLISH_ACCOUNT,
+        variables: {
+          id,
+        },
+      });
+
+      return { id };
+    } catch (ex) {
+      console.log(ex);
+      return thunkAPI.rejectWithValue({
+        error: "Something went wrong",
+      });
+    }
+  }
+);
 
 export const verifyAuth = createAsyncThunk(
   "auth/verifyAuth",
@@ -80,6 +114,22 @@ const authSlice = createSlice({
     },
     [loginUser.rejected as any]: (state: any, action) => {
       toastr.error(action.payload.message);
+      state.user.error = action.payload.error;
+      state.user.loading = false;
+    },
+    [createUser.pending as any]: (state) => {
+      state.user.loading = true;
+    },
+    [createUser.fulfilled as any]: (state: any, action) => {
+      state.user.data = action.payload.data;
+      state.user.loading = false;
+      state.verified = true;
+      toastr.success("Successfully authenticated");
+      localStorage.setItem(storage.TOKEN, action.payload.token);
+      Router.push("/newsfeed");
+    },
+    [createUser.rejected as any]: (state: any, action) => {
+      toastr.error(action.payload.error);
       state.user.error = action.payload.error;
       state.user.loading = false;
     },

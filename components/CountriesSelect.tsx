@@ -1,8 +1,8 @@
 import countries from "constants/countries";
 
-const CountriesSelect = () => (
-  <select className="form-control" id="country">
-    <option value="country" disabled selected>
+const CountriesSelect = ({ htmlRef }: any) => (
+  <select className="form-control" id="country" name="country" ref={htmlRef}>
+    <option value="" disabled selected>
       Country
     </option>
     {Object.keys(countries).map((q: string, i: number) => (

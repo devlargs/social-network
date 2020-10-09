@@ -1,6 +1,8 @@
 import bodyParser from "body-parser";
 
-export default () => {
+const initBodyParser = () => {
   bodyParser.urlencoded({ extended: false });
   bodyParser.json();
 };
+
+export default initBodyParser;
