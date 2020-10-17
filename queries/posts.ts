@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const POSTS = gql`
-  {
-    posts {
+  query posts($friends: [ID!]) {
+    posts(where: { creator: { id_in: $friends } }) {
       id
       content {
         html
