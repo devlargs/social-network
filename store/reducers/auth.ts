@@ -9,6 +9,7 @@ import { DynamicObject } from "interfaces/DynamicObject";
 import Router from "next/router";
 import client from "utils/apolloClient";
 import toastr from "toastr";
+import clientCookie from "js-cookie";
 import { CREATE_ACCOUNT, PUBLISH_ACCOUNT } from "mutations/account";
 
 export const createUser = createAsyncThunk(
@@ -109,6 +110,7 @@ const authSlice = createSlice({
       state.user.loading = false;
       state.verified = true;
       toastr.success("Successfully authenticated");
+      clientCookie.set("token", action.payload.token);
       localStorage.setItem(storage.TOKEN, action.payload.token);
       Router.push("/newsfeed");
     },

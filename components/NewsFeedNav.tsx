@@ -1,9 +1,11 @@
+import Link from "next/link";
+
 const NewsFeedNav = () => (
   <ul className="nav-news-feed">
     <li>
       <i className="icon ion-ios-paper"></i>
       <div>
-        <a href="newsfeed">My Newsfeed</a>
+        <Link href="/404">My Newsfeed</Link>
       </div>
     </li>
     <li>

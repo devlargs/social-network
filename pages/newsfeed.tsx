@@ -4,8 +4,15 @@ import PostContent from "components/PostContent";
 import ProfileCard from "components/ProfileCard";
 import SEO from "components/SEO";
 import WhoToFollow from "components/WhoToFollow";
+import fetchTokenData from "utils/fetchTokenData";
+import checkPermission from "utils/checkPermission";
+import { useEffect } from "react";
 
-const NewsFeed = () => {
+const NewsFeed = ({ userId }: { userId: string | null }) => {
+  useEffect(() => {
+    checkPermission(userId);
+  }, [userId]);
+
   return (
     <>
       <SEO title="Newsfeed" />
@@ -30,6 +37,14 @@ const NewsFeed = () => {
       </div>
     </>
   );
+};
+
+NewsFeed.getInitialProps = async ({ req }) => {
+  const res = await (await fetchTokenData(req)).json();
+
+  return {
+    userId: res?.userId || null,
+  };
 };
 
 export default NewsFeed;
