@@ -8,6 +8,9 @@ export const POSTS = gql`
         html
       }
       createdAt
+      likes {
+        id
+      }
       creator {
         id
         firstName

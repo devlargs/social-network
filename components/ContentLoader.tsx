@@ -17,7 +17,7 @@ const Loader = ({
     speed={1}
     width={width}
     height={height}
-    viewBox="0 0 200 70"
+    viewBox={`0 0 ${width} ${height}`}
     backgroundColor={backgroundColor}
     foregroundColor={foregroundColor}
   >
