@@ -6,11 +6,15 @@ import SEO from "components/SEO";
 import WhoToFollow from "components/WhoToFollow";
 import fetchTokenData from "utils/fetchTokenData";
 import checkPermission from "utils/checkPermission";
+import { useDispatch } from "react-redux";
+
 import { useEffect } from "react";
 
 const NewsFeed = ({ userId }: { userId: string | null }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    checkPermission(userId);
+    checkPermission(userId, dispatch);
   }, [userId]);
 
   return (

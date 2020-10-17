@@ -44,20 +44,6 @@ export const createUser = createAsyncThunk(
   }
 );
 
-export const verifyAuth = createAsyncThunk(
-  "auth/verifyAuth",
-  async (token: string, thunkAPI) => {
-    try {
-      const { data } = await axios.post("/api/login/verify", {
-        token,
-      });
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue({ error: error.message });
-    }
-  }
-);
-
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (params: DynamicObject, thunkAPI) => {
@@ -80,28 +66,27 @@ export const loginUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    loading: false,
-    verified: false,
-    error: null,
+    currentUser: null,
     user: {
       loading: false,
       data: {},
       error: null,
     },
   },
-  reducers: {},
+  reducers: {
+    resetUser: (state) => {
+      state.currentUser = null;
+      state.user = {
+        loading: false,
+        data: {},
+        error: null,
+      };
+    },
+    setCurrentUser: (state, action) => {
+      state.currentUser = action.payload;
+    },
+  },
   extraReducers: {
-    [verifyAuth.pending as any]: (state) => {
-      state.loading = true;
-    },
-    [verifyAuth.fulfilled as any]: (state: any, action) => {
-      state.verified = action.payload.verified;
-      state.loading = false;
-    },
-    [verifyAuth.rejected as any]: (state: any, action) => {
-      state.error = action.payload.error;
-      state.loading = false;
-    },
     [loginUser.pending as any]: (state) => {
       state.user.loading = true;
     },
@@ -138,15 +123,6 @@ const authSlice = createSlice({
   },
 });
 
-export const selectAuth = createSelector(
-  (state: any) => ({
-    verified: state.auth.verified,
-    loading: state.auth.loading,
-    error: state.auth.error,
-  }),
-  (state) => state
-);
-
 export const selectUser = createSelector(
   (state: any) => ({
     data: state.auth.user.verified,
@@ -155,5 +131,14 @@ export const selectUser = createSelector(
   }),
   (state) => state
 );
+
+export const selectCurrentUser = createSelector(
+  (state: any) => ({
+    userId: state.currentUser,
+  }),
+  (state) => state
+);
+
+export const { setCurrentUser, resetUser } = authSlice.actions;
 
 export default authSlice.reducer;
