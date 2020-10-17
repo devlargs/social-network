@@ -11,19 +11,17 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-const App = ({ Component, pageProps }) => {
-  return (
-    <>
-      <ScriptLinks />
-      <ReduxProvider store={store}>
-        <ApolloProvider client={client}>
-          <AppWrapper>
-            <Component {...pageProps} />
-          </AppWrapper>
-        </ApolloProvider>
-      </ReduxProvider>
-    </>
-  );
-};
+const App = ({ Component, pageProps }) => (
+  <>
+    <ScriptLinks />
+    <ReduxProvider store={store}>
+      <ApolloProvider client={client}>
+        <AppWrapper>
+          <Component {...pageProps} />
+        </AppWrapper>
+      </ApolloProvider>
+    </ReduxProvider>
+  </>
+);
 
 export default App;

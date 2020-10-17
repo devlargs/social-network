@@ -1,12 +1,15 @@
 import { useQuery } from "@apollo/react-hooks";
 import { ACCOUNT } from "queries/accounts";
 import coercedGet from "utils/coercedGet";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "store/reducers/auth";
 import ContentLoader from "./ContentLoader";
 
 const ProfileCard = () => {
+  const { userId } = useSelector(selectCurrentUser);
   const { data, loading } = useQuery(ACCOUNT, {
     variables: {
-      id: "ckfxrhyao0ppz0185gv6gvxrl",
+      id: userId,
     },
   });
 

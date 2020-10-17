@@ -31,7 +31,6 @@ const PostComments = ({ id }: Props): ReactElement => {
               {q?.creator?.firstName} {q?.creator?.lastName}
             </a>{" "}
             <DangerousHTML html={q?.content?.html} />
-            {/* {q?.content} */}
           </p>
         </div>
       ))}

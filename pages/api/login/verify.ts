@@ -11,7 +11,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "POST") {
     try {
-      const json = verify(req.body.token) as any;
+      const json = verify(JSON.parse(req.body).token) as any;
+
       if (json?.data?.id) {
         await axios({
           url: process.env.GRAPHCMS_ENDPOINT,
@@ -26,25 +27,23 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         })
           .then(() => {
             res.send({
-              verified: true,
+              error: false,
+              userId: json.data.id,
             });
           })
           .catch((ex) => {
             return res.send({
               message: "Something went wrong",
               error: ex,
-              verified: false,
             });
           });
       } else {
         res.send({
           error: "Invalid token",
-          verified: false,
         });
       }
     } catch (ex) {
       res.send({
-        verified: false,
         error: `${ex}`,
       });
     }

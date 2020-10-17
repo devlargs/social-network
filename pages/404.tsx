@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const ErrorPage = () => (
   <>
     {" "}
@@ -10,6 +12,7 @@ const ErrorPage = () => (
             <p>
               Looks like you are lost. But don't worry there is plenty to see!!
             </p>
+            <Link href="/newsfeed">Newsfeed</Link>
           </div>
         </div>
       </div>

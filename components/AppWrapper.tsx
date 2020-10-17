@@ -1,11 +1,10 @@
 import { ReactNode, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectAuth, verifyAuth } from "store/reducers/auth";
 import showable from "utils/isShowable";
 import Header from "components/Header";
 import Footer from "components/Footer";
-import Router from "next/router";
-import storage from "constants/storage";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser } from "store/reducers/auth";
+import { getFriends, selectFriends } from "store/reducers/friends";
 
 type Props = {
   children: ReactNode;
@@ -13,37 +12,24 @@ type Props = {
 
 const AppWrapper = ({ children }: Props) => {
   const dispatch = useDispatch();
-  const { loading, verified } = useSelector(selectAuth);
+  const { userId } = useSelector(selectCurrentUser);
+  const { data } = useSelector(selectFriends);
+  const shown = showable() && userId;
 
   useEffect(() => {
-    if (localStorage.getItem(storage.TOKEN)) {
-      dispatch(verifyAuth(storage.TOKEN));
-    } else {
-      Router.push("/");
+    if (userId) {
+      dispatch(getFriends(userId));
     }
-  }, []);
-
-  useEffect(() => {
-    if (!localStorage.getItem(storage.TOKEN) && !loading && !verified) {
-      if (process.browser) {
-        Router.push("/");
-      }
-    }
-  }, [loading, verified, process.browser && window.location.pathname]);
+  }, [userId]);
 
   return (
     <>
-      {loading ? (
-        <div id="spinner-wrapper">
-          <div className="spinner"></div>
-        </div>
-      ) : (
-        <>
-          {showable() && <Header />}
-          {children}
-          {showable() && <Footer />}
-        </>
+      {shown && <Header />}
+      {children}
+      {showable() && !userId && (
+        <span className="fa fa-gear fa-3x fa-spin"></span>
       )}
+      {shown && <Footer />}
     </>
   );
 };
