@@ -110,7 +110,7 @@ const Footer = () => (
               </li>
               <li>
                 <i className="icon ion-ios-email-outline"></i>
-                brennanbaroy@gmail.com
+                devlargs@gmail.com
               </li>
               <li>
                 <i className="icon ion-ios-location-outline"></i>Olongapo City,
@@ -122,7 +122,7 @@ const Footer = () => (
       </div>
     </div>
     <div className="copyright">
-      <p>Brennan&Largs © 2020. All rights reserved</p>
+      <p>devlargs © 2020. All rights reserved</p>
     </div>
   </footer>
 );

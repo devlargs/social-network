@@ -36,7 +36,9 @@ const PostContent = () => {
                     <a href="#" className="profile-link">
                       {q?.creator?.firstName} {q?.creator?.lastName}
                     </a>
-                    <span className="following">following</span>
+                    {q?.creator?.id !== userId && (
+                      <span className="following">following</span>
+                    )}
                   </h5>
                   <p className="text-muted">
                     published {dayjs(q.createdAt).fromNow()}
