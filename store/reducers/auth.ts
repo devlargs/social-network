@@ -92,6 +92,7 @@ const authSlice = createSlice({
     },
     [loginUser.fulfilled as any]: (state: any, action) => {
       state.user.data = action.payload.data;
+      state.currentUser = action.payload.data.id;
       state.user.loading = false;
       state.verified = true;
       toastr.success("Successfully authenticated");
@@ -134,7 +135,7 @@ export const selectUser = createSelector(
 
 export const selectCurrentUser = createSelector(
   (state: any) => ({
-    userId: state.currentUser,
+    userId: state.auth.currentUser,
   }),
   (state) => state
 );

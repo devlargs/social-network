@@ -7,11 +7,14 @@ import WhoToFollow from "components/WhoToFollow";
 import fetchTokenData from "utils/fetchTokenData";
 import checkPermission from "utils/checkPermission";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "store/reducers/auth";
 
 import { useEffect } from "react";
 
 const NewsFeed = ({ userId }: { userId: string | null }) => {
   const dispatch = useDispatch();
+  const data = useSelector(selectCurrentUser);
 
   useEffect(() => {
     checkPermission(userId, dispatch);
@@ -20,25 +23,27 @@ const NewsFeed = ({ userId }: { userId: string | null }) => {
   return (
     <>
       <SEO title="Newsfeed" />
-      <div id="page-contents">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3 static">
-              <ProfileCard />
-              <NewsFeedNav />
-            </div>
+      {data.userId && (
+        <div id="page-contents">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3 static">
+                <ProfileCard />
+                <NewsFeedNav />
+              </div>
 
-            <div className="col-md-7">
-              <CreatePostForm />
-              <PostContent />
-            </div>
+              <div className="col-md-7">
+                <CreatePostForm />
+                <PostContent />
+              </div>
 
-            <div className="col-md-2 static">
-              <WhoToFollow />
+              <div className="col-md-2 static">
+                <WhoToFollow />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
