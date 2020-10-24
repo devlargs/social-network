@@ -9,6 +9,7 @@ import { DynamicObject } from "interfaces/DynamicObject";
 import Router from "next/router";
 import client from "utils/apolloClient";
 import toastr from "toastr";
+import { isProduction } from "constants/stage";
 import clientCookie from "js-cookie";
 import { CREATE_ACCOUNT, PUBLISH_ACCOUNT } from "mutations/account";
 
@@ -27,12 +28,14 @@ export const createUser = createAsyncThunk(
         },
       });
 
-      await client.mutate({
-        mutation: PUBLISH_ACCOUNT,
-        variables: {
-          id,
-        },
-      });
+      if (isProduction()) {
+        await client.mutate({
+          mutation: PUBLISH_ACCOUNT,
+          variables: {
+            id,
+          },
+        });
+      }
 
       return { id };
     } catch (ex) {
@@ -112,7 +115,8 @@ const authSlice = createSlice({
       state.user.data = action.payload.data;
       state.user.loading = false;
       state.verified = true;
-      toastr.success("Successfully authenticated");
+      toastr.success("User successfully created");
+      clientCookie.set("token", action.payload.token);
       localStorage.setItem(storage.TOKEN, action.payload.token);
       Router.push("/newsfeed");
     },
