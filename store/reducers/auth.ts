@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import storage from "constants/storage";
+import { sign } from "server/helpers/token";
 import { DynamicObject } from "interfaces/DynamicObject";
 import Router from "next/router";
 import client from "utils/apolloClient";
@@ -39,7 +40,6 @@ export const createUser = createAsyncThunk(
 
       return { id };
     } catch (ex) {
-      console.log(ex);
       return thunkAPI.rejectWithValue({
         error: "Something went wrong",
       });
@@ -112,13 +112,12 @@ const authSlice = createSlice({
       state.user.loading = true;
     },
     [createUser.fulfilled as any]: (state: any, action) => {
-      state.user.data = action.payload.data;
-      state.user.loading = false;
-      state.verified = true;
       toastr.success("User successfully created");
-      clientCookie.set("token", action.payload.token);
-      localStorage.setItem(storage.TOKEN, action.payload.token);
+      const token = sign({ id: action.payload.id });
+      clientCookie.set("token", token);
+      localStorage.setItem(storage.TOKEN, token);
       Router.push("/newsfeed");
+      state.user.loading = false;
     },
     [createUser.rejected as any]: (state: any, action) => {
       toastr.error(action.payload.error);

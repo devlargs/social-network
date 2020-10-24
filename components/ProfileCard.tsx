@@ -3,6 +3,7 @@ import { ACCOUNT } from "queries/accounts";
 import coercedGet from "utils/coercedGet";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "store/reducers/auth";
+import { DEFAULT_AVATAR_IMG } from "constants/links";
 import ContentLoader from "./ContentLoader";
 
 const ProfileCard = () => {
@@ -22,7 +23,7 @@ const ProfileCard = () => {
       ) : (
         <>
           <img
-            src={account?.avatar?.url}
+            src={account?.avatar?.url || DEFAULT_AVATAR_IMG}
             width={300}
             height={300}
             alt="user"
