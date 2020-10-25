@@ -15,13 +15,8 @@ export const ACCOUNT = gql`
 `;
 
 export const ACCOUNTS = gql`
-  query accounts($first: Int, $after: String, $userId: ID!) {
-    accounts(
-      stage: PUBLISHED
-      where: { id_not: $userId }
-      first: $first
-      after: $after
-    ) {
+  query accounts($first: Int, $after: String, $userId: [ID!]) {
+    accounts(where: { id_not_in: $userId }, first: $first, after: $after) {
       id
       firstName
       lastName

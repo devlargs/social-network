@@ -9,7 +9,7 @@ import { ACCOUNTS } from "queries/accounts";
 
 type AccountsProps = {
   first?: number;
-  userId?: string;
+  userId?: Array<string>;
   after: string | null;
 };
 
@@ -17,8 +17,8 @@ export const getAccounts = createAsyncThunk(
   "accounts/getAccounts",
   async ({ first, after, userId }: AccountsProps, thunkAPI) => {
     try {
-      const { data } = await client.mutate({
-        mutation: ACCOUNTS,
+      const { data } = await client.query({
+        query: ACCOUNTS,
         variables: {
           first,
           after,

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "store/reducers/auth";
 import { DEFAULT_AVATAR_IMG } from "constants/links";
 import ContentLoader from "./ContentLoader";
+import capitalizeEachWord from "utils/capitalizeEachWord";
 
 const ProfileCard = () => {
   const { userId } = useSelector(selectCurrentUser);
@@ -31,7 +32,8 @@ const ProfileCard = () => {
           />
           <h5>
             <a href="timeline" className="text-white">
-              {account?.firstName} {account?.lastName}
+              {capitalizeEachWord(account?.firstName)}{" "}
+              {capitalizeEachWord(account?.lastName)}
             </a>
           </h5>
           <a href="#" className="text-white">

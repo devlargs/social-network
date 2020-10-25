@@ -5,14 +5,37 @@ import {
 } from "@reduxjs/toolkit";
 import client from "utils/apolloClient";
 import coercedGet from "utils/coercedGet";
+import { ADD_FRIEND } from "mutations/addFriend";
 import { FRIENDS } from "queries/friends";
 
 export const getFriends = createAsyncThunk(
   "friends/getFriends",
+  async (id: string, thunkAPI) => {
+    try {
+      const { data } = await client.query({
+        query: FRIENDS,
+        variables: {
+          id,
+        },
+      });
+
+      return {
+        data: coercedGet(data.account, "friends", []).map(
+          (q: { id: string }) => q.id
+        ),
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.message });
+    }
+  }
+);
+
+export const addFriend = createAsyncThunk(
+  "friends/addFriend",
   async (userId: string, thunkAPI) => {
     try {
       const { data } = await client.mutate({
-        mutation: FRIENDS,
+        mutation: ADD_FRIEND,
         variables: {
           id: userId,
         },
