@@ -10,7 +10,6 @@ import { DynamicObject } from "interfaces/DynamicObject";
 import Router from "next/router";
 import client from "utils/apolloClient";
 import toastr from "toastr";
-import { isProduction } from "constants/stage";
 import clientCookie from "js-cookie";
 import { CREATE_ACCOUNT, PUBLISH_ACCOUNT } from "mutations/account";
 
@@ -29,14 +28,12 @@ export const createUser = createAsyncThunk(
         },
       });
 
-      if (isProduction()) {
-        await client.mutate({
-          mutation: PUBLISH_ACCOUNT,
-          variables: {
-            id,
-          },
-        });
-      }
+      await client.mutate({
+        mutation: PUBLISH_ACCOUNT,
+        variables: {
+          id,
+        },
+      });
 
       return { id };
     } catch (ex) {

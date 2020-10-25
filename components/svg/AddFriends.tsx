@@ -1,4 +1,4 @@
-export default () => (
+const AddFriends = () => (
   <svg
     id="bc3896d4-aa68-4b30-a574-b72c1cf64d5a"
     data-name="Layer 1"
@@ -154,3 +154,5 @@ export default () => (
     />
   </svg>
 );
+
+export default AddFriends;
