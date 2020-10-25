@@ -9,7 +9,6 @@ import checkPermission from "utils/checkPermission";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "store/reducers/auth";
-
 import { useEffect } from "react";
 
 const NewsFeed = ({ userId }: { userId: string | null }) => {

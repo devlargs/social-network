@@ -10,6 +10,9 @@ export const ACCOUNT = gql`
         url
         id
       }
+      followers {
+        id
+      }
     }
   }
 `;

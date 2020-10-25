@@ -84,6 +84,9 @@ const authSlice = createSlice({
     },
     setCurrentUser: (state, action) => {
       state.currentUser = action.payload;
+      if (window.location.pathname === "/") {
+        Router.push("/newsfeed");
+      }
     },
   },
   extraReducers: {

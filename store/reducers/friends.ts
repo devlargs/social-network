@@ -44,7 +44,7 @@ export const addFriend = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      const { data } = await client.mutate({
+      await client.mutate({
         mutation: ADD_FRIEND,
         variables: {
           followerId,
@@ -89,8 +89,8 @@ const friendsSlice = createSlice({
       };
     },
     [addFriend.fulfilled as any]: (state: any, action) => {
-      delete state.addLoading[action.meta.arg.followingId];
       state.data = getUniqueValues([...state.data, action.payload.id]);
+      delete state.addLoading[action.meta.arg.followingId];
     },
     [addFriend.rejected as any]: (state: any, action) => {
       delete state.addLoading[action.meta.arg.followingId];

@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { COMMENTS_BY_POST_ID } from "queries/comments";
 import coercedGet from "utils/coercedGet";
 import DangerousHTML from "components/styles/DangerousHTML";
+import STORAGE from "constants/storage";
 
 type Props = {
   id: string;
@@ -36,7 +37,7 @@ const PostComments = ({ id }: Props): ReactElement => {
       ))}
       <div className="post-comment">
         <img
-          src="http://placehold.it/300x300"
+          src={localStorage[STORAGE.USER_AVATAR]}
           alt=""
           className="profile-photo-sm"
         />
