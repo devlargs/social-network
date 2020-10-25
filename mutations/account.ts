@@ -15,3 +15,5 @@ export const PUBLISH_ACCOUNT = gql`
     }
   }
 `;
+
+export default {};

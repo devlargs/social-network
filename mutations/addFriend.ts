@@ -13,3 +13,5 @@ export const ADD_FRIEND = gql`
     }
   }
 `;
+
+export default {};

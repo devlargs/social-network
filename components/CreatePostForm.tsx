@@ -1,10 +1,13 @@
+import STORAGE from "constants/storage";
+
 const CreatePostForm = () => (
   <div className="create-post">
     <div className="row">
       <div className="col-md-7 col-sm-7">
         <div className="form-group">
           <img
-            src="http://placehold.it/300x300"
+            style={{ width: 40, height: 40 }}
+            src={localStorage[STORAGE.USER_AVATAR]}
             alt=""
             className="profile-photo-md"
           />
