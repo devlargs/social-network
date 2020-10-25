@@ -14,7 +14,7 @@ const Loader = ({
   foregroundColor = "#CCCCCC",
 }: Props) => (
   <ContentLoader
-    speed={1}
+    speed={1.5}
     width={width}
     height={height}
     viewBox={`0 0 ${width} ${height}`}

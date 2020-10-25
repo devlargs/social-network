@@ -1,8 +1,18 @@
 import Head from "next/head";
 import RegisterForm from "components/RegisterForm";
 import LoginForm from "components/LoginForm";
+import fetchTokenData from "utils/fetchTokenData";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import checkPermission from "utils/checkPermission";
 
-export default function Home() {
+const Home = ({ userId }: { userId: string | null }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    checkPermission(userId, dispatch);
+  }, [userId]);
+
   return (
     <>
       <Head>
@@ -92,4 +102,14 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+Home.getInitialProps = async ({ req }) => {
+  const res = await (await fetchTokenData(req)).json();
+
+  return {
+    userId: res?.userId || null,
+  };
+};
+
+export default Home;

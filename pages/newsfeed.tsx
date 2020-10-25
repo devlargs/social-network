@@ -3,13 +3,12 @@ import NewsFeedNav from "components/NewsFeedNav";
 import PostContent from "components/PostContent";
 import ProfileCard from "components/ProfileCard";
 import SEO from "components/SEO";
-import WhoToFollow from "components/WhoToFollow";
+import FollowSuggestions from "components/FollowSuggestions";
 import fetchTokenData from "utils/fetchTokenData";
 import checkPermission from "utils/checkPermission";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "store/reducers/auth";
-
 import { useEffect } from "react";
 
 const NewsFeed = ({ userId }: { userId: string | null }) => {
@@ -38,7 +37,7 @@ const NewsFeed = ({ userId }: { userId: string | null }) => {
               </div>
 
               <div className="col-md-2 static">
-                <WhoToFollow />
+                <FollowSuggestions userId={userId} />
               </div>
             </div>
           </div>
