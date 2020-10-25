@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 
 export const ADD_FRIEND = gql`
-  mutation updateAccount(
-    $where: AccountWhereUniqueInput!
-    $data: AccountUpdateInput!
-  ) {
-    updateAccount(where: $where, data: $data) {
+  mutation updateAccount($followerId: ID!, $followingId: ID!) {
+    updateAccount(
+      where: { id: $followerId }
+      data: { friends: { connect: [{ where: { id: $followingId } }] } }
+    ) {
       id
       friends {
         id

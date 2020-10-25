@@ -7,6 +7,7 @@ import client from "utils/apolloClient";
 import coercedGet from "utils/coercedGet";
 import { ADD_FRIEND } from "mutations/addFriend";
 import { FRIENDS } from "queries/friends";
+import getUniqueValues from "utils/getUniqueValues";
 
 export const getFriends = createAsyncThunk(
   "friends/getFriends",
@@ -32,19 +33,27 @@ export const getFriends = createAsyncThunk(
 
 export const addFriend = createAsyncThunk(
   "friends/addFriend",
-  async (userId: string, thunkAPI) => {
+  async (
+    {
+      followerId,
+      followingId,
+    }: {
+      followerId: string;
+      followingId: string;
+    },
+    thunkAPI
+  ) => {
     try {
       const { data } = await client.mutate({
         mutation: ADD_FRIEND,
         variables: {
-          id: userId,
+          followerId,
+          followingId,
         },
       });
 
       return {
-        data: coercedGet(data.accounts[0], "friends", []).map(
-          (q: { id: string }) => q.id
-        ),
+        id: followingId,
       };
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
@@ -58,6 +67,7 @@ const friendsSlice = createSlice({
     data: [],
     loading: false,
     error: null,
+    addLoading: {},
   },
   reducers: {},
   extraReducers: {
@@ -72,6 +82,20 @@ const friendsSlice = createSlice({
       state.error = action.payload.error;
       state.loading = false;
     },
+    [addFriend.pending as any]: (state, action) => {
+      state.addLoading = {
+        ...state.addLoading,
+        [action.meta.arg.followingId]: true,
+      };
+    },
+    [addFriend.fulfilled as any]: (state: any, action) => {
+      delete state.addLoading[action.meta.arg.followingId];
+      state.data = getUniqueValues([...state.data, action.payload.id]);
+    },
+    [addFriend.rejected as any]: (state: any, action) => {
+      delete state.addLoading[action.meta.arg.followingId];
+      toastr.error("Follow Request Failed");
+    },
   },
 });
 
@@ -80,6 +104,7 @@ export const selectFriends = createSelector(
     data: state.friends.data,
     loading: state.friends.loading,
     error: state.friends.error,
+    addLoading: state.friends.addLoading,
   }),
   (state) => state
 );
