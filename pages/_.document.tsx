@@ -43,16 +43,17 @@ export default class MyDocument extends Document {
         <Head>
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-8L8PGEDX6M"
+            src="https://www.googletagmanager.com/gtag/js?id=UA-186994376-1"
           ></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `
                 if (!(location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+                  console.log('google analytics connected');
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
-                  gtag('config', 'G-8L8PGEDX6M');
+                  gtag('config', 'UA-186994376-1');
                 }
               `,
             }}
